@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularBasico';
+  dia:string = 'lunes';
+  lunes:string = 'fsdf';
 }

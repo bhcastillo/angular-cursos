@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header text center">
+        {{titulo}}
+    </div>
+    <div class="card-body">
+        <div *ngIf="!cursos || cursos.length===0">
+            <div class="alert alert-info text-center">
+                No hay cursos
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 mt-1">Filtar por:</div>
+           <div class="col-md-6"> 
+               <input type="text form-control" #filtro [(ngModel)]="textofiltro"> {{textofiltro}}
+            </div>
+        </div>
+        <table class="table" *ngIf="cursos.length>0">
+            <thead>
+                <th>#</th>
+                <th>Logo</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Fecha Inicio</th>
+                <th>precio</th>
+                <th>rating</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let curso of cursos; let i = index">
+                    <td> {{i +1 }} </td>
+                    <td> <img   [src] ="curso.imageUrl"
+                                [style.width] ="anchoImagen"
+                                [title] = "curso.name"> </td>
+                    <td> {{curso.name}} </td>
+                    <td> {{curso.description}} </td>
+                    <td> {{curso.startDate}} </td>
+                    <td> {{curso.price}} </td>
+                    <td> {{curso.rating}} </td>
+                    <td><app-acciones [curso]="curso"
+                                    (edit)="onEditCurso($event)"
+                                    (delete)="onDeleteCurso($event)"></app-acciones> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
